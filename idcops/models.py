@@ -35,13 +35,6 @@ def upload_to(instance, filename):
     return os.path.join('uploads', today, filename)
 
 
-EXT_NAMES = (
-    'level', 'hidden', 'dashboard', 'metric', 'icon',
-    'icon_color', 'default_filters', 'list_display', 'extra_fields'
-)
-
-models.options.DEFAULT_NAMES += EXT_NAMES
-
 COLOR_MAPS = (
     ("red", "红色"),
     ("orange", "橙色"),
@@ -70,9 +63,12 @@ class Mark(models.Model):
         ('pre_share', "预共享的"),
     )
     mark = models.CharField(
-        max_length=64, choices=CHOICES,
+        max_length=64,
+        choices=CHOICES,
         blank=True, null=True,
-        verbose_name="系统标记", help_text="系统Slug内容标记")
+        verbose_name="系统标记",
+        help_text="系统Slug内容标记"
+    )
 
     class Meta:
         level = 0
@@ -713,7 +709,7 @@ class Rack(Onidc, Mark, PersonTime, ActiveDelete, ClientAble, Remark):
             'unitc', 'pduc', 'cpower', 'onum', 'jnum', 'actived', 'tags'
         ]
         extra_fields = ['jnum', 'onum']
-        default_permissions = ('view', 'add', 'change', 'delete', 'exports')
+        default_permissions = ('view', 'add', 'change', 'delete', 'export')
         ordering = ['-actived', '-modified']
         unique_together = (('zone', 'name'), ('zone', 'cname'))
         verbose_name = verbose_name_plural = "机柜信息"

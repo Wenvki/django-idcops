@@ -113,7 +113,6 @@ class BaseRequiredMixin(LoginRequiredMixin):
             self.meta['title'] = self.title
         context['meta'] = self.meta
         context['menus'] = system_menus
-        # construct_menus()
         from django import db
         logger.info('queries count: {}'.format(len(db.connection.queries)))
         return context
