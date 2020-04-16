@@ -1,4 +1,4 @@
-django==2.1.15
+django==2.2.10
 django-notifications-hq==1.5.0
 filetype==1.0.5
 jsonfield==2.0.2
